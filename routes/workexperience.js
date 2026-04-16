@@ -28,10 +28,10 @@ router.post("/", async(req, res)=>{
 
     try{
         const result = await client.query(
-            `INSERT INTO workexperience (companyname, jobtitle, location) VALUES ($1, $2, $3)`, [companyname, jobtitle, location]
+            `INSERT INTO workexperience (companyname, jobtitle, location) VALUES ($1, $2, $3) RETURNING *`, [companyname, jobtitle, location]
         );
 
-        return res.json(result);
+        return res.json(result.rows[0]);
     }catch(error){
         res.status(500).json({message: "Could not insert workexperience"});
     }
