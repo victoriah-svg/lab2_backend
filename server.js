@@ -1,8 +1,10 @@
 /*Importerar paket */
 const express = require("express");
-const { Client } = require("pg"); // för pg-paketet
 require('dotenv').config(); // för att kunna läsa in data från env-filen
 const cors = require("cors");
+
+//Läser in routes
+const workExperienceRoutes = require("./routes/workexperience")
 
 // Skapar Express-instans
 const app = express();
@@ -11,29 +13,10 @@ const app = express();
 app.use(cors());       
 app.use(express.json());  
 
-//anslutning till databas
-const client = new Client({
-    //dessa läses in från env-filen
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-    // detta måste finnas med för gratisvariant av postgre , inte krypterad med ssl
-    ssl: {
-        rejectUnauthorized: false,
-    },
-});
+//Route
+app.use("/workexperience", workExperienceRoutes);
 
-//ansluter till db
-client.connect((err) => {
-    if(err) {
-        console.log("Connection error: " + err);
-    } else {
-        console.log("Connected to database!");
-       
-    }
-});
+
 
 //Startar applikationen
 app.listen(process.env.PORT, ()=>{ //vilken port den ska lyssna på, tas från env-filen, 3000
