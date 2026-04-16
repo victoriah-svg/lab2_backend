@@ -38,6 +38,43 @@ router.post("/", async(req, res)=>{
     }
 });
 
+router.put("/:id", async (req, res)=>{
+    const companyname = req.query.companyname;
+    const jobtitle = req.query.jobtitle;
+    const location = req.query.location;
+
+    try{
+        if(companyname){
+            const result = await client.query(
+            `UPDATE workexperience SET companyname= $1 WHERE id= $2 RETURNING *`, [companyname, req.params.id]
+        );
+
+         res.json(result.rows[0]);
+        }
+
+        if(jobtitle){
+            const result = await client.query(
+            `UPDATE workexperience SET jobtitle= $1 WHERE id= $2 RETURNING *`, [jobtitle, req.params.id]
+        );
+
+        res.json(result.rows[0]);
+        }
+
+        if(location){
+            const result = await client.query(
+            `UPDATE workexperience SET location= $1 WHERE id= $2 RETURNING *`, [location, req.params.id]
+        );
+        res.json(result.rows[0]);
+        }
+        return res.json(result.rows[0]);
+        
+
+    }catch(error){
+        res.status(500).json({message: "Could not update workexperience"});
+    }
+
+});
+
 router.delete("/:id", async (req, res)=>{
     try{
         const result = await client.query(
