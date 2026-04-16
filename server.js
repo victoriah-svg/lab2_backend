@@ -4,7 +4,7 @@ require('dotenv').config(); // för att kunna läsa in data från env-filen
 const cors = require("cors");
 
 //Läser in routes
-const workExperienceRoutes = require("./routes/workexperience")
+const workExperiencesRoutes = require("./routes/workexperiences")
 
 // Skapar Express-instans
 const app = express();
@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());  
 
 //Route
-app.use("/workexperience", workExperienceRoutes);
+app.use("/workexperiences", workExperiencesRoutes);
 
 
 
