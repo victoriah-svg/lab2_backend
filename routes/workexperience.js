@@ -28,13 +28,27 @@ router.post("/", async(req, res)=>{
 
     try{
         const result = await client.query(
-            `INSERT INTO workexperience (companyname, jobtitle, location) VALUES ($1, $2, $3) RETURNING *`, [companyname, jobtitle, location]
+            `INSERT INTO workexperience (companyname, jobtitle, location) 
+            VALUES ($1, $2, $3) RETURNING *`, [companyname, jobtitle, location]
         );
 
         return res.json(result.rows[0]);
     }catch(error){
         res.status(500).json({message: "Could not insert workexperience"});
     }
-})
+});
+
+router.delete("/:id", async (req, res)=>{
+    try{
+        const result = await client.query(
+        `DELETE FROM workexperience WHERE id= $1`, [req.params.id] 
+    );
+
+        return res.json({ message: "workexperience deleted"});
+    }catch(error){
+        res.status(500).json({message: "could not delete workexperience"});
+    }
+    
+});
 
 module.exports = router;
