@@ -38,7 +38,7 @@ async function createTables(){
         id SERIAL PRIMARY KEY,
         companyname TEXT NOT NULL,
         jobtitle TEXT NOT NULL,
-        location TEXT NOT NULL,
+        location TEXT NOT NULL
         )
         `
     )
