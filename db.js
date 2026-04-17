@@ -23,5 +23,5 @@ client.connect((err) => {
        
     }
 });
-
+//exporterar client för att kunna anävnda i workexperience.js
 module.exports = client;
