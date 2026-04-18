@@ -25,6 +25,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
     //data som läses in från request
     const { companyname, jobtitle, location } = req.body;
+    
 
     // om companyname, jobtitel eller location inte medskickat, returnera status och meddelande
     if (!companyname || !jobtitle || !location) {
