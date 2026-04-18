@@ -38,5 +38,5 @@ DELETE | /workexperience/:id | Tar bort jobberfarenhet med ett specifikt id |
 
 
 #### 🌟 Länk till live-version av API:et:
-[https://lab2-backend-ll5z.onrender.com/workexperience](https://lab2-backend-ll5z.onrender.com/workexperience)
+länk https://lab2-backend-ll5z.onrender.com/workexperience
 
